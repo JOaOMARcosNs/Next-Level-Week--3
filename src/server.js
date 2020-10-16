@@ -5,8 +5,11 @@ const pages = require('./pages.js');
 
 // iniciando express
 const server = express();
-// utilizando os arquivos estaticos
 server
+// utilizar body do req
+.use(express.urlencoded({ expected: true }))
+// utilizando os arquivos estaticos
+
 .use(express.static("public"))
 
 // configurar templete engine
@@ -18,7 +21,7 @@ server
 .get('/orphanage', pages.orphanage)
 .get('/orphanages', pages.orphanages)
 .get('/create-orphanage', pages.createOrphanage)
-
+.post('/save-orphanage', pages.saveOrphanage)
 
 // ligar o servidor 
 server.listen(5500)
